@@ -2,26 +2,33 @@ package henriqueaf90.backend_order_platform.controller
 
 import henriqueaf90.backend_order_platform.entity.Order
 import henriqueaf90.backend_order_platform.entity.Product
+import henriqueaf90.backend_order_platform.service.OrderService
+import henriqueaf90.backend_order_platform.service.Productservice
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class MainController {
+class MainController(
+    private val orderService: OrderService,
+    private val productService: Productservice
+) {
+
     @GetMapping("/orders")
-    fun order(): Order {
-        return Order(
-            id = 1,
-            customerName = "João",
-            status = "OK"
-        )
+    fun getOrders(): List<Order> {
+        return orderService.getOrders()
     }
+    @PostMapping("/orders")
+fun createOrder(
+    @RequestBody order: Order
+): Order {
+    return orderService.createOrder(order)
+
+}
 
     @GetMapping("/products")
     fun products(): Product {
-        return Product(
-            id = 1,
-            name = "Computer",
-            price = 99.99
-        )
+        return productService.getProducts()
     }
 }

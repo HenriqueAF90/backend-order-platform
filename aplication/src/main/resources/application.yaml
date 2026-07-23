@@ -1,12 +1,16 @@
 spring:
-  application:
-    name: demo
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/backend_order
-    username: postgres
-    password: test123
+    url: jdbc:postgresql://localhost:5432/dbbackend
+    username: admin
+    password: admin
 
   jpa:
     hibernate:
       ddl-auto: update
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        format_sql: true

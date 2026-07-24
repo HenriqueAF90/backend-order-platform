@@ -1,7 +1,18 @@
 package henriqueaf90.backend_order_platform.entity
 
-data class Product(
-    val id: Long,
-    val name: String,
-    val price: Double
+import jakarta.persistence.*
+
+@Entity
+@Table(name = "products")
+class Product(
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+
+    @Column(nullable = false)
+    var name: String = "",
+
+    @Column(nullable = false)
+    var price: Double = 0.0
 )
